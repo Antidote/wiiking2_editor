@@ -29,10 +29,10 @@ QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++11
 TARGET = SS_SaveEditor
 TEMPLATE = app
 INCLUDEPATH += include \
-           libwiiSave/include \
+           libwiisave/include \
            libzelda/include
-unix:LIBS += -LlibwiiSave/lib/Linux -lWiiSave -Llibzelda/lib/Linux -lzelda
-win32:LIBS +=  -LlibwiiSave/lib/Win32 -lWiiSave -Llibzelda/lib/Win32 -lzelda
+unix:LIBS += -L../wiiking2_editor/libwiisave/lib/Linux -lWiiSave -L../wiiking2_editor/libzelda/lib/Linux -lzelda
+win32:LIBS +=  -L../wiiking2_editor/libwiisave/lib/Win32 -lWiiSave -Ll../wiiking2_editor/ibzelda/lib/Win32 -lzelda
 
 SOURCES += \
     src/main.cpp\

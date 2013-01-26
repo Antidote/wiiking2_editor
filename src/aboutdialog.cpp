@@ -15,7 +15,7 @@
 
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
-#include "../svn_template/svnrev.h"
+//#include "../svn_template/svnrev.h"
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
@@ -23,13 +23,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     m_ui->setupUi(this);
     connect(m_ui->closeBtn, SIGNAL(clicked()), this, SLOT(close()));
-
+/*
 #ifdef DEBUG
     QString verstr(SVN_REV_STR);
     m_ui->abtText->setText(m_ui->abtText->text().replace("$SVNREVSTR$", (!verstr.isEmpty() ? QString("WiiKing2 Editor Revision: <a href=\"http://code.google.com/p/skyward-sword-save-editor/source/detail?r=%1\">r%1</a>").arg(verstr) : QString(""))));
-#else
+#else*/
     m_ui->abtText->setText(m_ui->abtText->text().replace("$SVNREVSTR$",""));
-#endif
+//#endif
 }
 
 AboutDialog::~AboutDialog()
