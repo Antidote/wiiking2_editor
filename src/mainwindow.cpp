@@ -849,6 +849,7 @@ void MainWindow::onSave()
         return;
 
     QString oldFilename = m_gameFile->filename();
+    m_fileWatcher->disconnect(this);
     foreach(QString file, m_fileWatcher->files())
         m_fileWatcher->removePath(file);
 
@@ -876,7 +877,6 @@ void MainWindow::onSave()
         m_ui->statusBar->showMessage(tr("Unable to save file"));
     }
 
-    m_fileWatcher->addPath(m_gameFile->filename());
     m_gameFile->updateChecksum();
     updateInfo();
     updateTitle();
@@ -1066,20 +1066,6 @@ void MainWindow::toggleWidgetStates()
 
 void MainWindow::updateMRU()
 {
-    QSettings settings;
-    settings.beginGroup("MRU");
-    QStringList files = settings.value("files", "").toString().split("?");
-    if (files.contains(m_gameFile->filename()))
-    {
-        files.removeAt(files.indexOf(m_gameFile->filename()));
-        files.push_front(m_gameFile->filename());
-    }
-    else
-        files.push_front(m_gameFile->filename());
-
-    files.removeDuplicates(); // Make sure there are no duplicates
-    settings.setValue("files", files.join("?"));
-    settings.endGroup();
 }
 
 void MainWindow::updateTitle()
