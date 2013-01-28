@@ -28,7 +28,7 @@ public:
     quint16 checksum16(const quint8* data, quint64 pos, quint64 length); //!< Used by the oracle games.
 private:
     quint32 reflect(quint32 reflect, char c);
-    quint32 m_crcTable[256];
+    static const quint32 m_crcTable[256];
 };
 
 #endif
