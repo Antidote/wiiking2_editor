@@ -17,7 +17,6 @@ CONFIG(release, release|debug){
 
 QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++11
 
-TARGET = SS_SaveEditor
 TEMPLATE = app subdirs
 INCLUDEPATH += ./include \
            ../libwiisave/include \
