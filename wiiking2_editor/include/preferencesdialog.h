@@ -37,6 +37,7 @@ public slots:
 private slots:
     void onTextChanged(QString);
     void onLoadKeys();
+    void onLoadMac();
 private:
     Ui::PreferencesDialog *m_ui;
 };

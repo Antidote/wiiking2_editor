@@ -22,6 +22,7 @@
 #include <QApplication>
 #include <QFileDialog>
 #include <QDebug>
+#include <stdio.h>
 
 class HexValidator : public QValidator
 {
@@ -59,7 +60,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     connect(m_ui->ngSigPt1LineEdit, SIGNAL(textChanged(QString)), this, SLOT(onTextChanged(QString)));
     connect(m_ui->ngSigPt2LineEdit, SIGNAL(textChanged(QString)), this, SLOT(onTextChanged(QString)));
     connect(m_ui->loadKeysBtn, SIGNAL(clicked()), this, SLOT(onLoadKeys()));
-
+    connect(m_ui->macLoadBtn,  SIGNAL(clicked()), this, SLOT(onLoadMac()));
     // Region Settings
     SettingsManager* settings = SettingsManager::instance();
 
@@ -173,6 +174,63 @@ void PreferencesDialog::onLoadKeys()
             {
                 this->hide();
                 this->show();
+            }
+        }
+    }
+}
+
+void PreferencesDialog::onLoadMac()
+{
+    QFileInfo finfo(qApp->applicationDirPath() + "/mac.txt");
+    if (!finfo.exists())
+    {
+        QString fileName = QFileDialog::getOpenFileName(this, "Load Keys", qApp->applicationDirPath(), "Mac address (*.txt *.bin)");
+
+        if (!fileName.isEmpty())
+        {
+            QFile file(fileName);
+            if (file.open(QFile::ReadOnly))
+            {
+                QByteArray array = file.readLine(12+5);
+                QByteArray mac;
+                if (array.contains(':'))
+                {
+                    char* str = (char*)QString(array).toStdString().c_str();
+                    int* tmp = new int[6];
+                    sscanf(str, "%x:%x:%x:%x:%x:%x", &tmp[0], &tmp[1], &tmp[2], &tmp[3], &tmp[4], &tmp[5]);
+
+                    mac.push_back((char)tmp[0]);
+                    mac.push_back((char)tmp[1]);
+                    mac.push_back((char)tmp[2]);
+                    mac.push_back((char)tmp[3]);
+                    mac.push_back((char)tmp[4]);
+                    mac.push_back((char)tmp[5]);
+                    qDebug() << mac;
+                    delete[] tmp;
+
+                    file.close();
+                    WiiKeys::instance()->setMacAddr(mac);
+                    this->hide();
+                    this->show();
+                    return;
+                }
+                else
+                {
+                    QByteArray macArray = QByteArray::fromHex(array);
+                    if (macArray.size() == 6)
+                    {
+                        file.close();
+                        WiiKeys::instance()->setMacAddr(macArray);
+                        this->hide();
+                        this->show();
+                    }
+                    else
+                    {
+                        file.close();
+                        return;
+                    }
+                    return;
+                }
             }
         }
     }

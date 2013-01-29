@@ -22,6 +22,7 @@
 #include "wiikeys.h"
 #include "checksum.h"
 #include "settingsmanager.h"
+#include <WiiSaveReader.hpp>
 #include <utility.hpp>
 #include <QMessageBox>
 
@@ -1898,7 +1899,8 @@ bool SkywardSwordFile::loadDataBin(const QString& filepath, Game game)
         if (m_data != NULL)
             delete m_data;
 
-        m_saveGame = new WiiSave(m_filename.toStdString());
+        WiiSaveReader reader(m_filename.toStdString());
+        m_saveGame = reader.readSave();
 
         char gameId[5];
         int tmp = (int)m_saveGame->banner()->gameID() & 0xFFFFFFFF;

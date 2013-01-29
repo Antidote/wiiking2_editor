@@ -18,6 +18,7 @@ CONFIG(release, release|debug){
 QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++11
 
 TEMPLATE = app subdirs
+unix:TARGET =../wiiking2_editor.x86_64
 INCLUDEPATH += ./include \
            ../libwiisave/include \
            ../libzelda/include
