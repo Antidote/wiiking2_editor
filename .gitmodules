@@ -3,4 +3,4 @@
 	url = https://github.com/Antidote/libzelda.git
 [submodule "libwiisave"]
 	path = libwiisave
-	url = https://github.com/antidote/libwiisave.git
+	url = https://github.com/Antidote/libwiisave.git
