@@ -6,16 +6,7 @@
 
 QT += core gui
 
-
-win32:CONFIG(debug, debug|release){
-    system("..\\svn_template\\SubWCRev.exe ..\\..\\ ..\\svn_template\\svnrev_template.h ..\\svn_template\\svnrev.h")
-}
-
 win32:QMAKE_LFLAGS += -static
-
-unix:CONFIG(debug, debug|release){
-    system("../svn_template/makesvnrev.sh")
-}
 
 CONFIG(debug, debug|release){
     DEFINES += DEBUG
@@ -27,12 +18,12 @@ CONFIG(release, release|debug){
 QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++11
 
 TARGET = SS_SaveEditor
-TEMPLATE = app
-INCLUDEPATH += include \
-           libwiisave/include \
-           libzelda/include
-unix:LIBS += -L../wiiking2_editor/libwiisave/lib/Linux -lWiiSave -L../wiiking2_editor/libzelda/lib/Linux -lzelda
-win32:LIBS +=  -L../wiiking2_editor/libwiisave/lib/Win32 -lWiiSave -Ll../wiiking2_editor/ibzelda/lib/Win32 -lzelda
+TEMPLATE = app subdirs
+INCLUDEPATH += ./include \
+           ../libwiisave/include \
+           ../libzelda/include
+unix:LIBS  += -L../libwiisave -lwiisave -L../libzelda -lzelda
+win32:LIBS += -L../libwiisave -lwiisave -L../libzelda -lzelda
 
 SOURCES += \
     src/main.cpp\
@@ -75,7 +66,6 @@ HEADERS  += \
     include/gameinfowidget.h \
     include/settingsmanager.h \
     include/playtimewidget.h \
-    ../svn_template/svnrev.h
 
 FORMS    += \
     forms/mainwindow.ui \
