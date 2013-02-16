@@ -22,8 +22,8 @@
 #include "igamefile.h"
 #include <QImage>
 #include <QIcon>
-#include "WiiSave.h"
-#include "WiiBanner.h"
+#include "WiiSave.hpp"
+#include "WiiBanner.hpp"
 #include "checksum.h"
 
 class QDateTime;

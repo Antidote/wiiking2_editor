@@ -15,10 +15,10 @@
 
 #include "skywardswordfile.h"
 #include "common.h"
-#include "WiiSave.h"
-#include "WiiBanner.h"
-#include "WiiFile.h"
-#include "Exception.hpp"
+#include <WiiSave.hpp>
+#include <WiiBanner.hpp>
+#include <WiiFile.hpp>
+#include <Exception.hpp>
 #include "wiikeys.h"
 #include "checksum.h"
 #include "settingsmanager.h"
