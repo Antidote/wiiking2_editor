@@ -23,6 +23,7 @@
 #include "checksum.h"
 #include "settingsmanager.h"
 #include <WiiSaveReader.hpp>
+#include <WiiSaveWriter.hpp>
 #include <utility.hpp>
 #include <QMessageBox>
 
@@ -1910,7 +1911,7 @@ bool SkywardSwordFile::loadDataBin(const QString& filepath, Game game)
 
         if (tmp == SkywardSwordFile::NTSCURegion || tmp == SkywardSwordFile::NTSCJRegion || tmp == SkywardSwordFile::PALRegion)
         {
-            m_data = (char*)m_saveGame->getFile("/wiiking2.sav")->data();
+            m_data = (char*)m_saveGame->file("/wiiking2.sav")->data();
             updateChecksum();
             m_game = game;
             m_isOpen = true;
@@ -1953,7 +1954,8 @@ bool SkywardSwordFile::saveDataBin()
         //WiiFile* wiiking2 = m_saveGame->getFile("/wiiking2.sav");
         //wiiking2->setData((unsigned char*)m_data);
         qDebug() << "Done saving to" << m_filename;
-        m_saveGame->saveToFile(m_filename.toStdString(), (quint8*)WiiKeys::instance()->macAddr().data(), WiiKeys::instance()->NGID(),(quint8*)WiiKeys::instance()->NGPriv().data(), (quint8*)WiiKeys::instance()->NGSig().data(), WiiKeys::instance()->NGKeyID());
+        WiiSaveWriter writer(m_filename.toStdString());
+        writer.writeSave(m_saveGame, (quint8*)WiiKeys::instance()->macAddr().data(), WiiKeys::instance()->NGID(),(quint8*)WiiKeys::instance()->NGPriv().data(), (quint8*)WiiKeys::instance()->NGSig().data(), WiiKeys::instance()->NGKeyID());
         return true;
     }
     else
@@ -2038,7 +2040,8 @@ bool SkywardSwordFile::saveDataBin()
             m_saveGame->setBanner(wiiBanner);
             m_saveGame->addFile("/wiiking2.sav", new WiiFile("wiiking2.sav", WiiFile::GroupRW | WiiFile::OwnerRW, (quint8*)m_data, 0xFBE0));
             m_saveGame->addFile("/skip.dat", new WiiFile("skip.dat", WiiFile::GroupRW | WiiFile::OwnerRW, skipData(), 0x80));
-            m_saveGame->saveToFile(m_filename.toStdString(), (quint8*)WiiKeys::instance()->macAddr().data(), WiiKeys::instance()->NGID(),(quint8*)WiiKeys::instance()->NGPriv().data(), (quint8*)WiiKeys::instance()->NGSig().data(), WiiKeys::instance()->NGKeyID());
+            WiiSaveWriter writer(m_filename.toStdString());
+            writer.writeSave(m_saveGame, (quint8*)WiiKeys::instance()->macAddr().data(), WiiKeys::instance()->NGID(),(quint8*)WiiKeys::instance()->NGPriv().data(), (quint8*)WiiKeys::instance()->NGSig().data(), WiiKeys::instance()->NGKeyID());
             delete m_saveGame;
             m_saveGame = NULL;
             return true;

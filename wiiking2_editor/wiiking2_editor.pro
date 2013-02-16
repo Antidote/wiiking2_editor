@@ -22,8 +22,8 @@ unix:TARGET =../wiiking2_editor.x86_64
 INCLUDEPATH += ./include \
            ../libwiisave/include \
            ../libzelda/include
-unix:LIBS  += -L../libwiisave -lwiisave -L../libzelda -lzelda
-win32:LIBS += -L../libwiisave -lwiisave -L../libzelda -lzelda
+unix:LIBS  += -L../libzelda -lzelda
+win32:LIBS += -L../libzelda -lzelda
 
 SOURCES += \
     src/main.cpp\
@@ -84,7 +84,8 @@ RESOURCES += \
 OTHER_FILES += \
     resources/mainicon.rc \
     resources/styleWin32.css \
-    resources/styleUnix.css
+    resources/styleUnix.css \
+    resources/clockdisplay.css
 
 TRANSLATIONS += \
     resources/languages/ja.ts

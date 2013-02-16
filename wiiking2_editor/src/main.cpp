@@ -48,6 +48,7 @@ void loadStyleSheet() {
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setStyle("plastique");
     a.setOrganizationName("WiiKing2");
     a.setApplicationName("WiiKing2 Editor");
     loadStyleSheet();

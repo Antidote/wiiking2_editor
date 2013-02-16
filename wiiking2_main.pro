@@ -1,9 +1,7 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-wiiking2.depends += libwiisave \
-                    libzelda \
+wiiking2.depends += libzelda \
                     wiiking2_editor
-SUBDIRS = libwiisave \
-          libzelda \
+SUBDIRS = libzelda \
           wiiking2_editor

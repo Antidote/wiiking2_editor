@@ -107,6 +107,7 @@
     <qresource prefix="/css">
         <file alias="WindowStyleUnix">styleUnix.css</file>
         <file alias="WindowStyleWin32">styleWin32.css</file>
+        <file alias="ClockDisplay">clockdisplay.css</file>
     </qresource>
     <qresource prefix="/BannerData">
         <file alias="SOUE/subtitle.bin">BannerData/SOUE/subtitle.bin</file>
