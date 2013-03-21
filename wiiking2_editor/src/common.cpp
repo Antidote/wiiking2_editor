@@ -20,45 +20,45 @@
 
 int convertRGB5A3ToBitMap(quint8* tplbuf, quint8** bitmapdata, quint32 width, quint32 height)
 {
-        quint32 x, y;
-        quint32 x1, y1;
-        quint32 iv;
-        //tplpoint -= width;
-        *bitmapdata = (quint8*)calloc(width * height, 4);
-        if(*bitmapdata == NULL)
-                return -1;
-        quint32 outsz = width * height * 4;
-        for(iv = 0, y1 = 0; y1 < height; y1 += 4) {
-                for(x1 = 0; x1 < width; x1 += 4) {
-                        for(y = y1; y < (y1 + 4); y++) {
-                                for(x = x1; x < (x1 + 4); x++) {
-                                        quint16 oldpixel = *(quint16*)(tplbuf + ((iv++) * 2));
-                                        if((x >= width) || (y >= height))
-                                                continue;
-                                        oldpixel = qFromBigEndian(oldpixel);
-                                        if(oldpixel & (1 << 15)) {
-                                                // RGB5
-                                                quint8 b = (((oldpixel >> 10) & 0x1F) * 255) / 31;
-                                                quint8 g = (((oldpixel >> 5)  & 0x1F) * 255) / 31;
-                                                quint8 r = (((oldpixel >> 0)  & 0x1F) * 255) / 31;
-                                                quint8 a = 255;
-                                                quint32 rgba = (r << 0) | (g << 8) | (b << 16) | (a << 24);
-                                                (*(quint32**)bitmapdata)[x + (y * width)] = rgba;
-                                        }else{
-                                                // RGB4A3
-
-                                            quint8 a = (((oldpixel >> 12) & 0x7) * 255) / 7;
-                                            quint8 b = (((oldpixel >> 8)  & 0xF) * 255) / 15;
-                                            quint8 g = (((oldpixel >> 4)  & 0xF) * 255) / 15;
-                                            quint8 r = (((oldpixel >> 0)  & 0xF) * 255) / 15;
+    quint32 x, y;
+    quint32 x1, y1;
+    quint32 iv;
+    //tplpoint -= width;
+    *bitmapdata = (quint8*)calloc(width * height, 4);
+    if(*bitmapdata == NULL)
+            return -1;
+    quint32 outsz = width * height * 4;
+    for(iv = 0, y1 = 0; y1 < height; y1 += 4) {
+            for(x1 = 0; x1 < width; x1 += 4) {
+                    for(y = y1; y < (y1 + 4); y++) {
+                            for(x = x1; x < (x1 + 4); x++) {
+                                    quint16 oldpixel = *(quint16*)(tplbuf + ((iv++) * 2));
+                                    if((x >= width) || (y >= height))
+                                            continue;
+                                    oldpixel = qFromBigEndian(oldpixel);
+                                    if(oldpixel & (1 << 15)) {
+                                            // RGB5
+                                            quint8 b = (((oldpixel >> 10) & 0x1F) * 255) / 31;
+                                            quint8 g = (((oldpixel >> 5)  & 0x1F) * 255) / 31;
+                                            quint8 r = (((oldpixel >> 0)  & 0x1F) * 255) / 31;
+                                            quint8 a = 255;
                                             quint32 rgba = (r << 0) | (g << 8) | (b << 16) | (a << 24);
                                             (*(quint32**)bitmapdata)[x + (y * width)] = rgba;
-                                        }
-                                }
-                        }
-                }
-        }
-        return outsz;
+                                    }else{
+                                            // RGB4A3
+
+                                        quint8 a = (((oldpixel >> 12) & 0x7) * 255) / 7;
+                                        quint8 b = (((oldpixel >> 8)  & 0xF) * 255) / 15;
+                                        quint8 g = (((oldpixel >> 4)  & 0xF) * 255) / 15;
+                                        quint8 r = (((oldpixel >> 0)  & 0xF) * 255) / 15;
+                                        quint32 rgba = (r << 0) | (g << 8) | (b << 16) | (a << 24);
+                                        (*(quint32**)bitmapdata)[x + (y * width)] = rgba;
+                                    }
+                            }
+                    }
+            }
+    }
+    return outsz;
 }
 
 QImage convertTextureToImage( const QByteArray &ba, quint32 w, quint32 h )

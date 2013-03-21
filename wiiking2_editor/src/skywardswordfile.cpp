@@ -17,6 +17,7 @@
 #include "common.h"
 #include <WiiSave.hpp>
 #include <WiiBanner.hpp>
+#include <WiiImage.hpp>
 #include <WiiFile.hpp>
 #include <Exception.hpp>
 #include "wiikeys.h"
@@ -1911,7 +1912,15 @@ bool SkywardSwordFile::loadDataBin(const QString& filepath, Game game)
 
         if (tmp == SkywardSwordFile::NTSCURegion || tmp == SkywardSwordFile::NTSCJRegion || tmp == SkywardSwordFile::PALRegion)
         {
-            m_data = (char*)m_saveGame->file("/wiiking2.sav")->data();
+            WiiFile* file = (*m_saveGame)["/wiiking2.sav"];
+            if (!file)
+            {
+                m_game = IGameFile::GameNone;
+                m_isOpen = false;
+                return false;
+            }
+
+            m_data = (char*)file->data();
             updateChecksum();
             m_game = game;
             m_isOpen = true;
@@ -2118,8 +2127,10 @@ const QIcon SkywardSwordFile::icon() const
     }
 
     WiiImage* icon = m_saveGame->banner()->getIcon(0);
+
     if (!icon)
         return QIcon();
+
     QIcon iconImage(QPixmap::fromImage(convertTextureToImage(QByteArray((char*)icon->data(), icon->width()*icon->height()*2), icon->width(), icon->height())));
     return iconImage;
 }
@@ -2142,7 +2153,12 @@ const QPixmap SkywardSwordFile::banner() const
     }
 
     WiiImage* banner = m_saveGame->banner()->bannerImage();
-    return QPixmap::fromImage(convertTextureToImage(QByteArray((char*)banner->data(), banner->width()*banner->height()*2), banner->width(), banner->height()));
+
+    quint8* bitmapdata = banner->toRGBA();
+    QImage img = (QImage((const uchar*)bitmapdata, banner->width(), banner->height(), QImage::Format_ARGB32));
+    QImage ret = img.copy(img.rect());
+    delete[] bitmapdata;
+    return QPixmap::fromImage(ret);
 }
 
 // To support MSVC I have placed these here, why can't Microsoft follow real ANSI Standards? <.<

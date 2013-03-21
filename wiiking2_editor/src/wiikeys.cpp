@@ -34,6 +34,10 @@ WiiKeys::WiiKeys() :
 WiiKeys::~WiiKeys()
 {
     saveKeys();
+
+    delete[] m_ngPriv;
+    delete[] m_ngSig;
+    delete[] m_macAddr;
 }
 
 bool WiiKeys::open(const QString &filepath, bool clear)

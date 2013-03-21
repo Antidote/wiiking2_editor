@@ -15,6 +15,7 @@
 
 #include <QApplication>
 
+#include <iostream>
 #include <QFile>
 #include <QString>
 #include <QTextStream>
@@ -22,33 +23,36 @@
 #include <QCalendarWidget>
 #include <QPushButton>
 #include <QDebug>
+#include <ALTTPFile.hpp>
+#include <ALTTPQuest.hpp>
 
-
-void loadStyleSheet() {
-    /* Let's use QFile and point to a resource... */
+void loadStyleSheet()
+{
+    // Let's use QFile and point to a resource...
 #ifdef Q_OS_WIN
     QFile data(":/css/WindowStyleWin32");
 #else
     QFile data(":/css/WindowStyleUnix");
 #endif
     QString style;
-    /* ...to open the file */
-    if(data.open(QFile::ReadOnly)) {
-                 /* QTextStream... */
-                 QTextStream styleIn(&data);
-                 /* ...read file to a string. */
-                 style = styleIn.readAll();
-                 data.close();
-                 /* We'll use qApp macro to get the QApplication pointer
-                  * and set the style sheet application wide. */
-                 qApp->setStyleSheet(style);
+    // ...to open the file
+    if(data.open(QFile::ReadOnly))
+    {
+         // QTextStream...
+         QTextStream styleIn(&data);
+         // ...read file to a string.
+         style = styleIn.readAll();
+         data.close();
+         /* We'll use qApp macro to get the QApplication pointer
+          * and set the style sheet application wide.
+          */
+         qApp->setStyleSheet(style);
     }
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setStyle("plastique");
     a.setOrganizationName("WiiKing2");
     a.setApplicationName("WiiKing2 Editor");
     loadStyleSheet();
