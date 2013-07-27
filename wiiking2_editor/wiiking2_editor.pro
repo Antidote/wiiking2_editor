@@ -10,9 +10,13 @@ win32:QMAKE_LFLAGS += -static
 
 CONFIG(debug, debug|release){
     DEFINES += DEBUG
+    unix:LIBS  += -L../libzelda -lzelda-d
+    win32:LIBS += -L../libzelda -lzelda-d
 }
 CONFIG(release, release|debug){
     DEFINES -= DEBUG
+    unix:LIBS  += -L../libzelda -lzelda
+    win32:LIBS += -L../libzelda -lzelda
 }
 
 QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++11
@@ -22,8 +26,8 @@ unix:TARGET =../wiiking2_editor.x86_64
 INCLUDEPATH += ./include \
            ../libwiisave/include \
            ../libzelda/include
-unix:LIBS  += -L../libzelda -lzelda
-win32:LIBS += -L../libzelda -lzelda
+unix:LIBS  += -lz
+win32:LIBS += -lzlib
 
 SOURCES += \
     src/main.cpp\

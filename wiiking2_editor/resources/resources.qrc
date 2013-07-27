@@ -103,6 +103,7 @@
         <file alias="Bomb256x256">Bomb256x256.png</file>
         <file alias="Redo">Icons/redo.png</file>
         <file alias="Undo">Icons/undo.png</file>
+        <file alias="Export">Icons/export.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="WindowStyleUnix">styleUnix.css</file>

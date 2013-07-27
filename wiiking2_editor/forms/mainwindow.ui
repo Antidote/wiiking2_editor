@@ -52,7 +52,16 @@
            <string>Play Stats</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
             <number>4</number>
            </property>
            <property name="spacing">
@@ -191,7 +200,16 @@
              <property name="spacing">
               <number>0</number>
              </property>
-             <property name="margin">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
               <number>0</number>
              </property>
             </layout>
@@ -215,7 +233,16 @@
            <property name="spacing">
             <number>2</number>
            </property>
-           <property name="margin">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
             <number>4</number>
            </property>
            <item>
@@ -383,7 +410,16 @@
            <property name="spacing">
             <number>2</number>
            </property>
-           <property name="margin">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
             <number>4</number>
            </property>
            <item>
@@ -518,7 +554,16 @@
            <property name="spacing">
             <number>4</number>
            </property>
-           <property name="margin">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
             <number>4</number>
            </property>
            <item>
@@ -725,7 +770,16 @@
            <string>Slingshot</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
             <number>2</number>
            </property>
            <property name="spacing">
@@ -796,7 +850,16 @@
            <string>Bug Net</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
             <number>2</number>
            </property>
            <property name="spacing">
@@ -857,7 +920,16 @@
            <string>Swords</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_10">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
             <number>2</number>
            </property>
            <property name="spacing">
@@ -1041,7 +1113,16 @@
            <string>Misc</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
             <number>2</number>
            </property>
            <property name="spacing">
@@ -1208,7 +1289,16 @@
            <string>GroupBox</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
             <number>2</number>
            </property>
            <property name="spacing">
@@ -1261,7 +1351,16 @@
              <bool>false</bool>
             </property>
             <layout class="QGridLayout" name="gridLayout">
-             <property name="margin">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
               <number>2</number>
              </property>
              <property name="spacing">
@@ -1368,7 +1467,16 @@
              <string>Bow</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_8">
-             <property name="margin">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
               <number>2</number>
              </property>
              <property name="spacing">
@@ -1574,7 +1682,16 @@
            <string>Quest Items</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_13">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
             <number>2</number>
            </property>
            <property name="spacing">
@@ -2759,7 +2876,16 @@
              <string>Inspector</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
-             <property name="margin">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
               <number>2</number>
              </property>
              <item>
@@ -2898,7 +3024,7 @@
      <x>0</x>
      <y>0</y>
      <width>722</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -2923,6 +3049,8 @@
     <addaction name="actionGame1"/>
     <addaction name="actionGame2"/>
     <addaction name="actionGame3"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
     <addaction name="actionExit"/>
@@ -2972,6 +3100,8 @@
    </attribute>
    <addaction name="actionSave"/>
    <addaction name="actionOpen"/>
+   <addaction name="separator"/>
+   <addaction name="actionExport"/>
    <addaction name="separator"/>
    <addaction name="actionClose"/>
    <addaction name="actionReload"/>
@@ -3107,6 +3237,21 @@
   <action name="actionNew">
    <property name="text">
     <string>&amp;New...</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Icons/Export</normaloff>:/Icons/Export</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Export</string>
+   </property>
+   <property name="toolTip">
+    <string>Export the currently selected quest</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>

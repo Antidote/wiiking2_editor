@@ -27,7 +27,11 @@
 #include "checksum.h"
 
 class QDateTime;
+
+namespace zelda
+{
 class WiiSave;
+}
 
 struct PlayTime
 {
@@ -378,7 +382,7 @@ private:
     Game    m_game;
     bool    m_isOpen;
     bool    m_isDirty;
-    WiiSave* m_saveGame;
+    zelda::WiiSave* m_saveGame;
     Checksum  m_checksumEngine;
 };
 

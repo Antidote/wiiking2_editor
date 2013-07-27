@@ -433,9 +433,9 @@ Vector3 SkywardSwordFile::playerPosition() const
     if (!m_data)
         return Vector3(0.0f, 0.0f, 0.0f);
 
-    return Vector3(swapFloat(*(float*)(m_data + gameOffset() + 0x0010)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x0014)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x0018)));
+    return Vector3(zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0010)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0014)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0018)));
 }
 
 void SkywardSwordFile::setPlayerPosition(float x, float y, float z)
@@ -447,9 +447,9 @@ void SkywardSwordFile::setPlayerPosition(Vector3 pos)
 {
     if (!m_data)
         return;
-    *(float*)(m_data + gameOffset() + 0x0010) = swapFloat(pos.X);
-    *(float*)(m_data + gameOffset() + 0x0014) = swapFloat(pos.Y);
-    *(float*)(m_data + gameOffset() + 0x0018) = swapFloat(pos.Z);
+    *(float*)(m_data + gameOffset() + 0x0010) = zelda::utility::swapFloat(pos.X);
+    *(float*)(m_data + gameOffset() + 0x0014) = zelda::utility::swapFloat(pos.Y);
+    *(float*)(m_data + gameOffset() + 0x0018) = zelda::utility::swapFloat(pos.Z);
     m_isDirty = true;
     emit modified();
 }
@@ -458,9 +458,9 @@ Vector3 SkywardSwordFile::playerRotation() const
 {
     if (!m_data)
         return Vector3(0, 0, 0);
-    return Vector3(swapFloat(*(float*)(m_data + gameOffset() + 0x001C)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x0020)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x0024)));
+    return Vector3(zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x001C)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0020)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0024)));
 }
 
 void SkywardSwordFile::setPlayerRotation(float roll, float pitch, float yaw)
@@ -472,9 +472,9 @@ void SkywardSwordFile::setPlayerRotation(Vector3 rotation)
 {
     if (!m_data)
         return;
-    *(float*)(m_data + gameOffset() + 0x001C) = swapFloat(rotation.X);
-    *(float*)(m_data + gameOffset() + 0x0020) = swapFloat(rotation.Y);
-    *(float*)(m_data + gameOffset() + 0x0024) = swapFloat(rotation.Z);
+    *(float*)(m_data + gameOffset() + 0x001C) = zelda::utility::swapFloat(rotation.X);
+    *(float*)(m_data + gameOffset() + 0x0020) = zelda::utility::swapFloat(rotation.Y);
+    *(float*)(m_data + gameOffset() + 0x0024) = zelda::utility::swapFloat(rotation.Z);
     m_isDirty = true;
     updateChecksum();
     emit modified();
@@ -484,9 +484,9 @@ Vector3 SkywardSwordFile::cameraPosition() const
 {
     if (!m_data)
         return Vector3(0.0f, 0.0f, 0.0f);
-    return Vector3(swapFloat(*(float*)(m_data + gameOffset() + 0x0028)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x002C)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x0030)));
+    return Vector3(zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0028)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x002C)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0030)));
 }
 
 void SkywardSwordFile::setCameraPosition(float x, float y, float z)
@@ -498,9 +498,9 @@ void SkywardSwordFile::setCameraPosition(Vector3 pos)
 {
     if (!m_data)
         return;
-    *(float*)(m_data + gameOffset() + 0x0028) = swapFloat(pos.X);
-    *(float*)(m_data + gameOffset() + 0x002C) = swapFloat(pos.Y);
-    *(float*)(m_data + gameOffset() + 0x0030) = swapFloat(pos.Z);
+    *(float*)(m_data + gameOffset() + 0x0028) = zelda::utility::swapFloat(pos.X);
+    *(float*)(m_data + gameOffset() + 0x002C) = zelda::utility::swapFloat(pos.Y);
+    *(float*)(m_data + gameOffset() + 0x0030) = zelda::utility::swapFloat(pos.Z);
     updateChecksum();
     emit modified();
 }
@@ -509,9 +509,9 @@ Vector3 SkywardSwordFile::cameraRotation() const
 {
     if (!m_data)
         return Vector3(0.0f, 0.0f, 0.0f);
-    return Vector3(swapFloat(*(float*)(m_data + gameOffset() + 0x0034)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x0038)),
-                   swapFloat(*(float*)(m_data + gameOffset() + 0x003C)));
+    return Vector3(zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0034)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x0038)),
+                   zelda::utility::swapFloat(*(float*)(m_data + gameOffset() + 0x003C)));
 }
 
 void SkywardSwordFile::setCameraRotation(float roll, float pitch, float yaw)
@@ -524,9 +524,9 @@ void SkywardSwordFile::setCameraRotation(Vector3 rotation)
     if (!m_data)
         return;
 
-    *(float*)(m_data + gameOffset() + 0x0034) = swapFloat(rotation.X);
-    *(float*)(m_data + gameOffset() + 0x0038) = swapFloat(rotation.Y);
-    *(float*)(m_data + gameOffset() + 0x003C) = swapFloat(rotation.Z);
+    *(float*)(m_data + gameOffset() + 0x0034) = zelda::utility::swapFloat(rotation.X);
+    *(float*)(m_data + gameOffset() + 0x0038) = zelda::utility::swapFloat(rotation.Y);
+    *(float*)(m_data + gameOffset() + 0x003C) = zelda::utility::swapFloat(rotation.Z);
     m_isDirty = true;
     emit modified();
 }
@@ -1901,7 +1901,7 @@ bool SkywardSwordFile::loadDataBin(const QString& filepath, Game game)
         if (m_data != NULL)
             delete m_data;
 
-        WiiSaveReader reader(m_filename.toStdString());
+        zelda::io::WiiSaveReader reader(m_filename.toStdString());
         m_saveGame = reader.readSave();
 
         char gameId[5];
@@ -1912,7 +1912,7 @@ bool SkywardSwordFile::loadDataBin(const QString& filepath, Game game)
 
         if (tmp == SkywardSwordFile::NTSCURegion || tmp == SkywardSwordFile::NTSCJRegion || tmp == SkywardSwordFile::PALRegion)
         {
-            WiiFile* file = (*m_saveGame)["/wiiking2.sav"];
+            zelda::WiiFile* file = m_saveGame->file("/wiiking2.sav");
             if (!file)
             {
                 m_game = IGameFile::GameNone;
@@ -1933,7 +1933,7 @@ bool SkywardSwordFile::loadDataBin(const QString& filepath, Game game)
             return false;
         }
     }
-    catch (Exception e)
+    catch (zelda::error::Exception e)
     {
         QMessageBox msg(QMessageBox::Warning, "Error loading file", e.message().c_str());
         msg.exec();
@@ -1963,13 +1963,13 @@ bool SkywardSwordFile::saveDataBin()
         //WiiFile* wiiking2 = m_saveGame->getFile("/wiiking2.sav");
         //wiiking2->setData((unsigned char*)m_data);
         qDebug() << "Done saving to" << m_filename;
-        WiiSaveWriter writer(m_filename.toStdString());
+        zelda::io::WiiSaveWriter writer(m_filename.toStdString());
         writer.writeSave(m_saveGame, (quint8*)WiiKeys::instance()->macAddr().data(), WiiKeys::instance()->NGID(),(quint8*)WiiKeys::instance()->NGPriv().data(), (quint8*)WiiKeys::instance()->NGSig().data(), WiiKeys::instance()->NGKeyID());
         return true;
     }
     else
     {
-        m_saveGame = new WiiSave();
+        m_saveGame = new zelda::WiiSave();
         int r = region();
         char gameId[5];
         memset(gameId, 0, 5);
@@ -1982,10 +1982,10 @@ bool SkywardSwordFile::saveDataBin()
             char* bannerData = new char[192*168*2];
             dataStream.readRawData(bannerData, 192*168*2);
             banner.close();
-            WiiBanner* wiiBanner = NULL;
+            zelda::WiiBanner* wiiBanner = NULL;
 
-            wiiBanner = new WiiBanner();
-            wiiBanner->setBannerImage(new WiiImage(192, 64, (quint8*)bannerData));
+            wiiBanner = new zelda::WiiBanner();
+            wiiBanner->setBannerImage(new zelda::WiiImage(192, 64, (quint8*)bannerData));
             quint64 titleId = 0x00010000;
             quint64 fullId = ((quint64)r << 32)  | qToBigEndian(titleId) >> 32;
             wiiBanner->setGameID(qFromBigEndian(fullId));
@@ -1999,7 +1999,7 @@ bool SkywardSwordFile::saveDataBin()
                 quint8* iconData = new quint8[48*48*2];
                 dataStream.readRawData((char*)iconData, 48*48*2);
                 icon.close();
-                wiiBanner->addIcon(new WiiImage(48, 48, iconData));
+                wiiBanner->addIcon(new zelda::WiiImage(48, 48, iconData));
                 qDebug() << "Got icon.tpl";
             }
             else
@@ -2044,12 +2044,12 @@ bool SkywardSwordFile::saveDataBin()
                 return false;
             }
 
-            wiiBanner->setPermissions(WiiFile::GroupRW | WiiFile::OwnerRW);
+            wiiBanner->setPermissions(zelda::WiiFile::GroupRW | zelda::WiiFile::OwnerRW);
             wiiBanner->setAnimationSpeed(0); // no animations
             m_saveGame->setBanner(wiiBanner);
-            m_saveGame->addFile("/wiiking2.sav", new WiiFile("wiiking2.sav", WiiFile::GroupRW | WiiFile::OwnerRW, (quint8*)m_data, 0xFBE0));
-            m_saveGame->addFile("/skip.dat", new WiiFile("skip.dat", WiiFile::GroupRW | WiiFile::OwnerRW, skipData(), 0x80));
-            WiiSaveWriter writer(m_filename.toStdString());
+            m_saveGame->addFile("/wiiking2.sav", new zelda::WiiFile("wiiking2.sav", zelda::WiiFile::GroupRW | zelda::WiiFile::OwnerRW, (quint8*)m_data, 0xFBE0));
+            m_saveGame->addFile("/skip.dat", new zelda::WiiFile("skip.dat", zelda::WiiFile::GroupRW | zelda::WiiFile::OwnerRW, skipData(), 0x80));
+            zelda::io::WiiSaveWriter writer(m_filename.toStdString());
             writer.writeSave(m_saveGame, (quint8*)WiiKeys::instance()->macAddr().data(), WiiKeys::instance()->NGID(),(quint8*)WiiKeys::instance()->NGPriv().data(), (quint8*)WiiKeys::instance()->NGSig().data(), WiiKeys::instance()->NGKeyID());
             delete m_saveGame;
             m_saveGame = NULL;
@@ -2126,7 +2126,7 @@ const QIcon SkywardSwordFile::icon() const
         return QIcon();
     }
 
-    WiiImage* icon = m_saveGame->banner()->getIcon(0);
+    zelda::WiiImage* icon = m_saveGame->banner()->getIcon(0);
 
     if (!icon)
         return QIcon();
@@ -2152,7 +2152,7 @@ const QPixmap SkywardSwordFile::banner() const
         return QPixmap();
     }
 
-    WiiImage* banner = m_saveGame->banner()->bannerImage();
+    zelda::WiiImage* banner = m_saveGame->banner()->bannerImage();
 
     quint8* bitmapdata = banner->toRGBA();
     QImage img = (QImage((const uchar*)bitmapdata, banner->width(), banner->height(), QImage::Format_ARGB32));
