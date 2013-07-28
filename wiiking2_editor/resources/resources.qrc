@@ -104,6 +104,7 @@
         <file alias="Redo">Icons/redo.png</file>
         <file alias="Undo">Icons/undo.png</file>
         <file alias="Export">Icons/export.png</file>
+        <file alias="Import">Icons/import.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="WindowStyleUnix">styleUnix.css</file>
@@ -134,5 +135,10 @@
         <file alias="MediumWallet">Equipment/Wallets/Medium Wallet.png</file>
         <file alias="SmallWallet">Equipment/Wallets/Small Wallet.png</file>
         <file alias="TycoonWallet">Equipment/Wallets/Tycoo Wallet.png</file>
+    </qresource>
+    <qresource prefix="/Triforce">
+        <file alias="Background">Triforce/TriforceBG.png</file>
+        <file alias="Piece">Triforce/Triforce_piece.png</file>
+        <file alias="Glow">Triforce/Triforce_piece_glow.png</file>
     </qresource>
 </RCC>

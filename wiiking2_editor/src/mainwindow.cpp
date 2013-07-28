@@ -28,6 +28,8 @@
 #include "qhexedit2/qhexedit.h"
 #include <QDebug>
 #include <QtEndian>
+#include <QScrollArea>
+#include <QUndoStack>
 
 #include "igamefile.h"
 #include "skywardswordfile.h"
@@ -39,6 +41,7 @@
 #include "wiikeys.h"
 #include "settingsmanager.h"
 #include "playtimewidget.h"
+#include "importexportquestdialog.h"
 
 #ifdef DEBUG
 QString dir("D:/Projects/dolphin-emu/Binary/x64/User/Wii/title/00010000/534f5545/data");
@@ -103,7 +106,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_ui->playTimeLayout->setMargin(0);
     m_ui->playTimeLayout->addWidget(m_playTime);
     // Now check to see if the user started the program with a commandline
-    if (qApp->argc() > 1)
+    if (qApp->arguments().count() > 1)
         // Attempt to open the file
     {
         m_gameFile = new SkywardSwordFile(qApp->arguments()[1]);
@@ -255,6 +258,8 @@ void MainWindow::setupConnections()
     connect(m_ui->actionAboutQt,        SIGNAL(triggered()),          this, SLOT(onAboutQt()));
     connect(m_ui->actionFileInfo,       SIGNAL(triggered()),          this, SLOT(onFileInfo()));
     connect(m_ui->actionPreferences,    SIGNAL(triggered()),          this, SLOT(onPreferences()));
+    connect(m_ui->actionExport,         SIGNAL(triggered()),          this, SLOT(onExport()));
+    connect(m_ui->actionImport,         SIGNAL(triggered()),          this, SLOT(onImport()));
 
 }
 
@@ -395,8 +400,16 @@ void MainWindow::setupFileConnections()
 
 SkywardSwordFile* MainWindow::gameFile()
 {
+    if (!m_gameFile)
+    {
+        int region = m_settingsManager->defaultRegion();
+        m_gameFile = new SkywardSwordFile((region == SettingsManager::NTSCU ? SkywardSwordFile::NTSCURegion : region == SettingsManager::NTSCJ
+                                                                              ? SkywardSwordFile::NTSCJRegion : SkywardSwordFile::PALRegion));
+    }
+
     return m_gameFile;
 }
+
 
 void MainWindow::onTextChanged(QString text)
 {
@@ -710,6 +723,7 @@ void MainWindow::updateInfo()
     m_ui->goddessPlumeSpinBox    ->setEnabled(m_ui->goddessPlumeChkBox->isChecked());
 
     m_ui->gratitudeCrystalSpinBox->setValue(m_gameFile->gratitudeCrystalAmount());
+
 
     m_isUpdating = false;
 }
@@ -1166,4 +1180,30 @@ void MainWindow::closeEvent(QCloseEvent* e)
     }
 
     e->accept();
+}
+
+void MainWindow::onExport()
+{
+    if (m_gameFile)
+    {
+        ImportExportQuestDialog eqd(this);
+        eqd.exec();
+    }
+    updateInfo();
+    updateTitle();
+    toggleWidgetStates();
+
+}
+
+void MainWindow::onImport()
+{
+    ImportExportQuestDialog iqd(this, ImportExportQuestDialog::Import);
+    iqd.exec();
+    if (m_gameFile)
+    {
+        m_hexEdit->setData(m_gameFile->gameData());
+        updateInfo();
+        updateTitle();
+        toggleWidgetStates();
+    }
 }

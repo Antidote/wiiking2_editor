@@ -74,6 +74,8 @@ private slots:
     void onHexDataChanged();
     void onHexGotoAddress();
     void closeEvent(QCloseEvent* e);
+    void onExport();
+    void onImport();
 
 private:
     bool askOnClose();

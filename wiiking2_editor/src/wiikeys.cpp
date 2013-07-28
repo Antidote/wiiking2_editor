@@ -65,7 +65,7 @@ bool WiiKeys::open(const QString &filepath, bool clear)
             m_ngKeyID = 0;
     }
 
-    FILE* f = fopen(filepath.toAscii(), "rb");
+    FILE* f = fopen(filepath.toStdString().c_str(), "rb");
 
     if (f)
     {
@@ -218,9 +218,9 @@ void WiiKeys::saveKeys()
     QByteArray tmp;
     QSettings settings;
     settings.beginGroup("Keys");
-    tmp = QByteArray::fromHex(QString::number(m_ngID, 16).toAscii());
+    tmp = QByteArray::fromHex(QString::number(m_ngID, 16).toStdString().c_str());
     settings.setValue("NGID", (tmp.size() == 4 ? tmp.toHex() : QByteArray()));
-    tmp = QByteArray::fromHex(QString::number(m_ngKeyID, 16).toAscii());
+    tmp = QByteArray::fromHex(QString::number(m_ngKeyID, 16).toStdString().c_str());
     settings.setValue("NGKeyID", (tmp.size() == 4 ? tmp.toHex() : QByteArray()));
     settings.setValue("NGSig",  QByteArray(m_ngSig, 0x3C).toHex());
     settings.setValue("NGPriv", QByteArray(m_ngPriv, 0x1E).toHex());

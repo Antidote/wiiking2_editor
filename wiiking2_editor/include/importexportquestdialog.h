@@ -13,17 +13,44 @@
 // You should have received a copy of the GNU General Public License
 // along with WiiKing2 Editor.  If not, see <http://www.gnu.org/licenses/>
 
-#include "exportquestdialog.h"
-#include "ui_exportquestdialog.h"
+#ifndef EXPORTQUESTDIALOG_H
+#define EXPORTQUESTDIALOG_H
 
-ExportQuestDialog::ExportQuestDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ExportQuestDialog)
-{
-    ui->setupUi(this);
+#include <QDialog>
+
+namespace Ui {
+class ImportExportQuestDialog;
 }
 
-ExportQuestDialog::~ExportQuestDialog()
+namespace zelda
 {
-    delete ui;
+class ZQuestFile;
 }
+
+class ImportExportQuestDialog : public QDialog
+{
+    Q_OBJECT
+    
+public:
+    enum Mode
+    {
+        Import,
+        Export
+    };
+
+    explicit ImportExportQuestDialog(QWidget *parent = 0, Mode mode = Export);
+    ~ImportExportQuestDialog();
+public slots:
+    void onPathPressed();
+private slots:
+    void accept();
+
+
+private:
+    Ui::ImportExportQuestDialog *ui;
+
+    Mode m_mode;
+    zelda::ZQuestFile* m_quest;
+};
+
+#endif // EXPORTQUESTDIALOG_H

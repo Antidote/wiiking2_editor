@@ -1,5 +1,5 @@
 #include <QtGui>
-
+#include <QHBoxLayout>
 #include "qhexedit2/qhexedit.h"
 
 

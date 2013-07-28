@@ -115,19 +115,19 @@ void PreferencesDialog::accept()
     if (m_ui->ngSigPt1LineEdit->hasAcceptableInput() && m_ui->ngSigPt2LineEdit->hasAcceptableInput() &&
         m_ui->ngSigPt1LineEdit->text().length() == 60 && m_ui->ngSigPt1LineEdit->text().length() == 60)
     {
-        QByteArray ngSig = QByteArray::fromHex(m_ui->ngSigPt1LineEdit->text().toAscii());
-        ngSig.append(QByteArray::fromHex(m_ui->ngSigPt2LineEdit->text().toAscii()));
+        QByteArray ngSig = QByteArray::fromHex(m_ui->ngSigPt1LineEdit->text().toStdString().c_str());
+        ngSig.append(QByteArray::fromHex(m_ui->ngSigPt2LineEdit->text().toStdString().c_str()));
         WiiKeys::instance()->setNGSig(ngSig);
     }
 
     if (m_ui->ngPrivLineEdit->hasAcceptableInput() && m_ui->ngPrivLineEdit->text().length() == 60)
     {
-        QByteArray ngPriv = QByteArray::fromHex(m_ui->ngPrivLineEdit->text().toAscii());
+        QByteArray ngPriv = QByteArray::fromHex(m_ui->ngPrivLineEdit->text().toStdString().c_str());
         WiiKeys::instance()->setNGPriv(ngPriv);
     }
     if (m_ui->macAddrLineEdit->hasAcceptableInput() && m_ui->macAddrLineEdit->text().length() == 12)
     {
-        QByteArray macAddr = QByteArray::fromHex(m_ui->macAddrLineEdit->text().toAscii());
+        QByteArray macAddr = QByteArray::fromHex(m_ui->macAddrLineEdit->text().toStdString().c_str());
         WiiKeys::instance()->setMacAddr(macAddr);
     }
 
@@ -150,8 +150,8 @@ void PreferencesDialog::accept()
 
 void PreferencesDialog::showEvent(QShowEvent *se)
 {
-    m_ui->ngIDLineEdit->setText(QString(QByteArray::fromHex(QString::number(WiiKeys::instance()->NGID(), 16).toAscii()).toHex()));
-    m_ui->ngKeyIDLineEdit->setText(QString(QByteArray::fromHex(QString::number(WiiKeys::instance()->NGKeyID(), 16).toAscii()).toHex()));
+    m_ui->ngIDLineEdit->setText(QString(QByteArray::fromHex(QString::number(WiiKeys::instance()->NGID(), 16).toStdString().c_str()).toHex()));
+    m_ui->ngKeyIDLineEdit->setText(QString(QByteArray::fromHex(QString::number(WiiKeys::instance()->NGKeyID(), 16).toStdString().c_str()).toHex()));
     m_ui->ngSigPt1LineEdit->setText(WiiKeys::instance()->NGSig().remove(30, 30).toHex());
     m_ui->ngSigPt2LineEdit->setText(WiiKeys::instance()->NGSig().mid(30).toHex());
     m_ui->ngPrivLineEdit->setText(WiiKeys::instance()->NGPriv().toHex());

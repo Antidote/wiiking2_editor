@@ -142,7 +142,7 @@ bool SkywardSwordFile::save(const QString& filename)
 
     QString tmpFilename = m_filename;
     tmpFilename = tmpFilename.remove(m_filename.lastIndexOf("."), tmpFilename.length() - tmpFilename.lastIndexOf(".")) + ".tmp";
-    FILE* f = fopen(tmpFilename.toAscii(), "wb");
+    FILE* f = fopen(tmpFilename.toStdString().c_str(), "wb");
     if (f)
     {
         for (int i = 0; i < GameCount; ++i)
@@ -156,7 +156,7 @@ bool SkywardSwordFile::save(const QString& filename)
         fwrite(m_data, 1, 0xFBE0, f);
         fclose(f);
 
-        f = fopen(tmpFilename.toAscii(), "rb");
+        f = fopen(tmpFilename.toStdString().c_str(), "rb");
         if (f)
         {
             char* tmpBuf = new char[0xFBE0];
@@ -246,7 +246,7 @@ void SkywardSwordFile::exportGame(const QString& filepath, Game game, Region reg
         game = Game1;
     char* outBuf = new char[0xFBE0];
     memcpy(outBuf, (m_data + 0x20 + (0x53C0 * game)), 0x53C0);
-    FILE* out = fopen(filepath.toAscii(), "wb");
+    FILE* out = fopen(filepath.toStdString().c_str(), "wb");
     struct Header
     {
         int magic;
@@ -1268,7 +1268,7 @@ QByteArray SkywardSwordFile::gameData()
     if (!m_data)
         return QByteArray(0x53C0, 0);
 
-    return QByteArray(m_data + gameOffset(), 0x53BC);
+    return QByteArray(m_data + gameOffset(), 0x53C0);
 }
 
 quint8* SkywardSwordFile::skipData() const
@@ -1399,7 +1399,7 @@ void SkywardSwordFile::setFlag(quint32 offset, quint32 flag, bool val)
 bool SkywardSwordFile::isValidFile(const QString &filepath, Region* outRegion)
 {
 
-    FILE* file = fopen(filepath.toAscii(), "rb");
+    FILE* file = fopen(filepath.toStdString().c_str(), "rb");
     if (!file)
         return false;
 

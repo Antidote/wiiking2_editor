@@ -2,8 +2,10 @@
 #define QHEXEDIT_H
 
 #include <QtGui>
+#include <QScrollArea>
 #include "qhexedit_p.h"
 
+class QHBoxLayout;
 /** \mainpage
 QHexEdit is a binary editor widget for Qt.
 

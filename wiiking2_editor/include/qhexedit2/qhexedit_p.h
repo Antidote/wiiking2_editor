@@ -5,7 +5,10 @@
 
 
 #include <QtGui>
+#include <QtWidgets>
 #include "xbytearray.h"
+class QUndoStack;
+class QScrollArea;
 
 class QHexEditPrivate : public QWidget
 {
