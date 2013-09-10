@@ -5,7 +5,6 @@
 
 
 #include <QtGui>
-#include <QtWidgets>
 #include "xbytearray.h"
 class QUndoStack;
 class QScrollArea;
