@@ -21,7 +21,7 @@ CONFIG(release, release|debug){
     win32:LIBS += -L../libzelda -lzelda
 }
 
-QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++11
+QMAKE_CXXFLAGS = -O0 -O1 -O2 -O3 -Os -std=c++0x
 
 TEMPLATE = app subdirs
 unix:TARGET =../wiiking2_editor.x86_64
